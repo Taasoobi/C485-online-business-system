@@ -12,7 +12,7 @@ app.register_blueprint(inventory_bp)
 
 
 #@app.route("/")
-#def HelloWorld():
+#def HelloWorld():s
 #    return "Hello World"
 
 if __name__ == "__main__":
