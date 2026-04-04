@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from controllers.inventory_controller import inventory_bp
 
+## do "cd backend" and then "python app.py" to start the backend;
 ## npm run dev to start the frontend;
 ## python app.py to start the backend;
 
