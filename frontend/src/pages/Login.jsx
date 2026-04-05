@@ -15,23 +15,21 @@ function Login() {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault() }
-
+    e.preventDefault();
     // For now just simulate login
     console.log("Logging in:", form)
-
     // Later you will call your Flask API here
+    //navigate("/dashboard")
+  }
 
-    navigate("/dashboard")
 
     //Sign up Section
-    const [showSignup, setShowSignup] = useState(true)
-
+    const [showSignup, setShowSignup] = useState(false)
     const [signupForm, setSignupForm] = useState({
         username: "",
-        password: ""
+        password: "",
+        confirmPassword: ""
     })
-
     const handleSignupChange = (e) => {
     setSignupForm({ ...signupForm, [e.target.name]: e.target.value })
     }
@@ -39,14 +37,17 @@ function Login() {
     const handleSignupSubmit = (e) => {
     e.preventDefault()
 
+    if (signupForm.password !== signupForm.confirmPassword) {
+        alert("Passwords do not match!")
+        return
+    }
+
     console.log("Signing up:", signupForm)
 
   // later → send to Flask API
 
     setShowSignup(false)
     }
-
-  
 
   return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 flex-col gap-6">
@@ -104,7 +105,7 @@ function Login() {
       </div>
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8 flex items-center justify-center">
         <h2 className="text-lg text-gray-700 font-bold text-center">
-          Don't have an account? <span onClick={() => setShowSignup(true)} className="text-blue-600">Sign Up</span>
+          Don't have an account? <span onClick={() => setShowSignup(true)} className="text-blue-600 hover:text-purple-500 hover:cursor-pointer">Sign Up</span>
         </h2>
       </div>
 
@@ -112,9 +113,9 @@ function Login() {
         {showSignup && (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
 
-    <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8">
+    <div className="bg-white flex flex-col items-center justify-center rounded-2xl shadow-xl h-2/3 w-full max-w-md p-8">
 
-      <h2 className="text-2xl font-bold text-center mb-6">
+      <h2 className="text-2xl text-gray-500 font-bold text-center mb-6">
         Create Account for <span className="text-blue-600">Businexus</span>
       </h2>
 
@@ -139,6 +140,17 @@ function Login() {
           className="w-full mb-6 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         />
+
+          {/* Confirm Password */}
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={signupForm.confirmPassword}
+            onChange={handleSignupChange}
+            className="w-full mb-6 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
 
         <button
           type="submit"
