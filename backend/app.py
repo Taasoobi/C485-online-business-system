@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from controllers.inventory_controller import inventory_bp
 from controllers.employee_controller import employee_bp
+from controllers.branch_controller import branch_bp
 
 ## do "cd backend" and then "python app.py" to start the backend;
 ## npm run dev to start the frontend;
@@ -12,6 +13,7 @@ CORS(app)
 
 app.register_blueprint(inventory_bp)
 app.register_blueprint(employee_bp)
+app.register_blueprint(branch_bp)
 
 
 #@app.route("/")
