@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "first_name": "John",
+        "last_name": "Doe",
+        "age": 30,
+        "salary": 50000,
+        "position": "Manager"
+    },
+    {
+        "id": 2,
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "age": 25,
+        "salary": 55000,
+        "position": "Sales Associate"
+    },
+    {
+        "id": 3,
+        "first_name": "Alice",
+        "last_name": "Johnson",
+        "age": 28,
+        "salary": 60000,
+        "position": "Software Engineer"
+    },
+    {
+        "id": 4,
+        "first_name": "Bob",
+        "last_name": "Brown",
+        "age": 35,
+        "salary": 65000,
+        "position": "Marketing Specialist"
+    }
+]

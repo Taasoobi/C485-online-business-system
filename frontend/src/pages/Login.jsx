@@ -19,7 +19,7 @@ function Login() {
     // For now just simulate login
     console.log("Logging in:", form)
     // Later you will call your Flask API here
-    //navigate("/dashboard")
+    navigate("/dashboard");
   }
 
 
@@ -115,7 +115,7 @@ function Login() {
 
     <div className="bg-white flex flex-col items-center justify-center rounded-2xl shadow-xl h-2/3 w-full max-w-md p-8">
 
-      <h2 className="text-2xl text-gray-500 font-bold text-center mb-6">
+      <h2 className="text-2xl text-gray-700 font-bold text-center mb-6">
         Create Account for <span className="text-blue-600">Businexus</span>
       </h2>
 

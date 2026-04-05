@@ -11,9 +11,6 @@ def get_inventory():
 
 @inventory_bp.route("/inventory", methods=["POST"])
 def create_inventory():
-
     data = request.json
-
     item = add_inventory(data)
-
     return jsonify(item)
