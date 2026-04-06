@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { api } from "../services/api"
 
 function Login() {
 
@@ -34,7 +35,7 @@ function Login() {
     setSignupForm({ ...signupForm, [e.target.name]: e.target.value })
     }
 
-    const handleSignupSubmit = (e) => {
+    const handleSignupSubmit = async (e) => {
     e.preventDefault()
 
     if (signupForm.password !== signupForm.confirmPassword) {
@@ -45,6 +46,11 @@ function Login() {
     console.log("Signing up:", signupForm)
 
   // later → send to Flask API
+    await api.post("/users", {
+        username: signupForm.username,
+        password: signupForm.password,
+        confirmPassword: signupForm.confirmPassword
+    })
 
     setShowSignup(false)
     }
