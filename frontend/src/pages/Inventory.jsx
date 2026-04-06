@@ -68,6 +68,17 @@ function Inventory() {
     }
   }
 
+  {/* Delete Item Button */}
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/inventory/${id}`)
+      // reload page to show updated inventory
+      window.location.reload()
+    } catch (error) {
+      console.error("Error deleting item:", error)
+      alert("Failed to delete item")
+    }
+  }
 
   return (
     <div className="">
@@ -88,7 +99,7 @@ function Inventory() {
           Add Item
         </button>
       </div>
-
+    <div className="max-h-[700px] overflow-y-auto">
       {items.map(item => (
         <div key={item.id} className="border p-3 mb-2 rounded-lg flex justify-evenly">
 
@@ -96,9 +107,12 @@ function Inventory() {
         <h6 className="text-lg font-semibold mb-1">Product Name: {item.product_name}</h6>
         <h6 className="text-lg font-semibold mb-1">Price: ${item.price}</h6>
         <h6 className="text-lg font-semibold mb-1">In Stock: {item.quantity}</h6>
+        <button title="Delete" onClick={() => handleDelete(item.id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+          ✕
+        </button>
         </div>
       ))}
-
+    </div>
       {showModal && (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
 
