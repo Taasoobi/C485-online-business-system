@@ -102,7 +102,7 @@ function Employees() {
 
       <div className="text-2xl font-bold mb-4 flex items-center gap-2 justify-evenly">
         <p>Employees</p>
-        <button className="bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 font-bold py-2 px-4 rounded">
+        <button onClick={() => setShowModal(true)} className="bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 font-bold py-2 px-4 rounded">
           Add Employee
         </button>
       </div>
@@ -111,6 +111,7 @@ function Employees() {
       {employee.map(emp => (
         <div key={emp.id} className="border p-3 mb-2 rounded-lg flex justify-evenly">
 
+        <h6 className="text-lg font-semibold mb-1">ID: {emp.id}</h6>
         <h6 className="text-lg font-semibold mb-1">First Name: {emp.first_name}</h6>
         <h6 className="text-lg font-semibold mb-1">Last Name: {emp.last_name}</h6>
         <h6 className="text-lg font-semibold mb-1">Age: {emp.age}</h6>
@@ -129,7 +130,7 @@ function Employees() {
     <div className="bg-gray-800 p-6 rounded-xl w-full max-w-md">
 
       <h2 className="text-xl font-bold mb-4 text-center">
-        Add Inventory Item
+        Add Employee
       </h2>
 
       <form onSubmit={handleSubmit}>

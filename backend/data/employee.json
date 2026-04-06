@@ -113,10 +113,10 @@
     },
     {
         "id": 15,
-        "first_name": "William",
-        "last_name": "Garcia",
-        "age": 36,
-        "salary": 72000,
-        "position": "Sales Manager"
+        "first_name": "Bob",
+        "last_name": "Saget",
+        "age": "80",
+        "salary": "120000",
+        "position": "IT Specialist"
     }
 ]
