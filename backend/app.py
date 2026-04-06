@@ -5,9 +5,10 @@ from controllers.employee_controller import employee_bp
 from controllers.branch_controller import branch_bp
 from controllers.auth_controller import auth_bp
 
-## do "cd backend" and then "python app.py" to start the backend;
-## npm run dev to start the frontend;
-## python app.py to start the backend;
+## first terminal type "cd backend" and then second terminal type "cd frontend";
+## first terminal type "python app.py" to start the backend;
+## second terminal type "npm run dev" to start the frontend;
+## these are development servers only.
 
 app = Flask(__name__)
 CORS(app)

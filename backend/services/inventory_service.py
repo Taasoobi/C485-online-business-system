@@ -19,3 +19,8 @@ def add_inventory(data):
     inventory.append(item.to_dict())
     write_data(FILE, inventory)
     return item.to_dict()
+
+def delete_inventory(inventory_id):
+    inventory = read_data(FILE)
+    inventory = [item for item in inventory if item["id"] != inventory_id]
+    write_data(FILE, inventory)

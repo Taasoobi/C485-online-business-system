@@ -21,3 +21,8 @@ def add_branch(data):
     branches.append(branch.to_dict())
     write_data(FILE, branches)
     return branch.to_dict()
+
+def delete_branch(branch_id):
+    branches = read_data(FILE)
+    branches = [branch for branch in branches if branch["id"] != branch_id]
+    write_data(FILE, branches)

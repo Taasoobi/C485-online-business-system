@@ -21,6 +21,11 @@ def add_employee(employee_data):
     write_data(FILE, employees)
     return employee.to_dict()
 
+def delete_employee(employee_id):
+    employees = read_data(FILE)
+    employees = [emp for emp in employees if emp["id"] != employee_id]
+    write_data(FILE, employees)
+
 """
 def get_employee_by_id(employee_id):
     employees = get_all_employees()
