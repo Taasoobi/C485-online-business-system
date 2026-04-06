@@ -9,7 +9,7 @@ import logout from "../assets/logout.png"
 function Inventory() {
   const navigate = useNavigate();
   const [items, setItems] = useState([])
-  //bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 font-bold flex items-center justify-center hover:cursor-pointer
+  
   useEffect(() => {
     api.get("/inventory").then(res => {
       setItems(res.data)

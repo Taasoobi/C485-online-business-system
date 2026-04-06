@@ -34,6 +34,58 @@ function Employees() {
     const handleLogout = () => {
       navigate("/")
     }
+  {/* Add Item Button */}
+  const [showModal, setShowModal] = useState(false)
+
+  const [newItem, setNewItem] = useState({
+    id: "",
+    first_name: "",
+    last_name: "",
+    age: "",
+    salary: "",
+    position: ""
+  })
+
+  const handleChange = (e) => {
+    setNewItem({ ...newItem, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      await api.post("/employees", {
+        id: newItem.id,
+        first_name: newItem.first_name,
+        last_name: newItem.last_name,
+        age: newItem.age,
+        salary: newItem.salary,
+        position: newItem.position
+      })
+
+      setShowModal(false)
+
+      // reload page to show new employee
+      window.location.reload()
+
+    } catch (error) {
+      console.error("Error adding employee:", error)
+      alert("Failed to add employee")
+    }
+  }
+
+  {/* Delete Item Button */}
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/employees/${id}`)
+      // reload page to show updated employees
+      window.location.reload()
+    } catch (error) {
+      console.error("Error deleting item:", error)
+      alert("Failed to delete item")
+    }
+  }
+
 
   return (
     <div className="">
@@ -55,6 +107,7 @@ function Employees() {
         </button>
       </div>
 
+      <div className="max-h-[700px] overflow-y-auto">
       {employee.map(emp => (
         <div key={emp.id} className="border p-3 mb-2 rounded-lg flex justify-evenly">
 
@@ -63,8 +116,109 @@ function Employees() {
         <h6 className="text-lg font-semibold mb-1">Age: {emp.age}</h6>
         <h6 className="text-lg font-semibold mb-1">Salary: ${emp.salary}</h6>
         <h6 className="text-lg font-semibold mb-1">Position: {emp.position}</h6>
+        <button title="Delete" onClick={() => handleDelete(emp.id)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+          ✕
+        </button>        
+        
         </div>
       ))}
+      </div>
+{showModal && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+
+    <div className="bg-gray-800 p-6 rounded-xl w-full max-w-md">
+
+      <h2 className="text-xl font-bold mb-4 text-center">
+        Add Inventory Item
+      </h2>
+
+      <form onSubmit={handleSubmit}>
+
+        {/* SKU */}
+        <input
+          type="number"
+          name="id"
+          placeholder="ID"
+          value={newItem.id}
+          onChange={handleChange}
+          className="w-full mb-3 p-2 border rounded"
+          required
+        />
+
+        <input
+          type="text"
+          name="first_name"
+          placeholder="First Name"
+          value={newItem.first_name}
+          onChange={handleChange}
+          className="w-full mb-3 p-2 border rounded"
+          required
+        />
+
+        <input
+          type="text"
+          name="last_name"
+          placeholder="Last Name"
+          value={newItem.last_name}
+          onChange={handleChange}
+          className="w-full mb-3 p-2 border rounded"
+          required
+        />
+
+        <input
+          type="number"
+          name="age"
+          placeholder="Age"
+          value={newItem.age}
+          onChange={handleChange}
+          className="w-full mb-3 p-2 border rounded"
+          required
+        />
+
+        <input
+          type="number"
+          name="salary"
+          placeholder="Salary"
+          value={newItem.salary}
+          onChange={handleChange}
+          className="w-full mb-4 p-2 border rounded"
+          required
+        />
+
+        <input
+          type="text"
+          name="position"
+          placeholder="Position"
+          value={newItem.position}
+          onChange={handleChange}
+          className="w-full mb-4 p-2 border rounded"
+          required
+        />
+
+        {/* Buttons */}
+        <div className="flex justify-between">
+
+          <button
+            type="button"
+            onClick={() => setShowModal(false)}
+            className="px-4 py-2 bg-gray-400 text-white rounded"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            className="px-4 py-2 bg-green-600 text-white rounded"
+          >
+            Add Item
+          </button>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+)}
 
     </div>
   )
