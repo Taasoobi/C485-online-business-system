@@ -15,14 +15,44 @@ function Login() {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // For now just simulate login
-    console.log("Logging in:", form)
-    // Later you will call your Flask API here
-    navigate("/dashboard");
+
+      try {
+    // Get all users from backend
+    const res = await api.get("/users")
+    const users = res.data
+
+    // Find matching user
+    const user = users.find(
+      (u) =>
+        u.username === form.username &&
+        u.password === form.password
+    )
+
+    if (user) {
+      console.log("Login successful:", user)
+
+      // Optional: store user in localStorage
+      //localStorage.setItem("user", JSON.stringify(user))
+
+      navigate("/dashboard")
+    } else {
+      alert(
+        "Error: Username or password is incorrect or does not exist. Please try again or sign up."
+      )
+    }
+
+  } catch (error) {
+    console.error("Login error:", error)
+    alert("Something went wrong. Please try again.")
   }
 
+    /* For now just simulate login
+    console.log("Logging in:", form)
+    // Later you will call your Flask API here
+    navigate("/dashboard");*/
+  }
 
     //Sign up Section
     const [showSignup, setShowSignup] = useState(false)
@@ -43,9 +73,9 @@ function Login() {
         return
     }
 
-    console.log("Signing up:", signupForm)
+    //console.log("Signing up:", signupForm)
 
-  // later → send to Flask API
+    //send to Flask API
     await api.post("/users", {
         username: signupForm.username,
         password: signupForm.password,
