@@ -91,7 +91,7 @@ function Employees() {
     <div className="">
     <div className=" text-blue-500 font-bold flex items-center justify-between bg-gray-800 p-6">
         <button onClick={goToDashboard} className="bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 py-2 px-4 rounded hover:cursor-pointer">Dashboard</button>
-        <h3 onClick={goMain} className="text-6xl text-blue-500 font-bold">Businexus</h3>
+        <h3 onClick={goMain} className="text-6xl text-blue-500 font-bold hover:cursor-pointer">Businexus</h3>
         <button onClick={handleLogout} className="bg-gray-300 hover:bg-blue-700 flex hover:text-white text-gray-800 py-2 px-4 rounded hover:cursor-pointer">Logout <img src={logout} alt="Logout" className="w-6 h-6 ml-2" /></button>
       </div>
       <div className="text-2xl font-bold mb-4 flex items-center justify-evenly bg-gray-700 border-b-2 border-black shadow-lg">

@@ -16,9 +16,6 @@ function Dashboard() {
     navigate("/employees")
   }
   const handleLogout = () => {
-    // Clear user session (if using localStorage or context)
-    //localStorage.removeItem("user")
-    // Redirect to login page
     navigate("/")
   }
 
@@ -36,16 +33,6 @@ function Dashboard() {
       <div onClick={handleLogout} class="flex-col bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 font-bold flex items-center justify-center hover:cursor-pointer rounded-lg shadow-lg p-6 w-full text-center text-4xl"><img src={logout} alt="Logout" class="w-16 h-16 mx-auto mb-2" />Logout</div>
 
       </div>
-
-      {/*      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-10">
-        View Branches
-      </button>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-10">
-        View Employees
-      </button>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-10">
-        View Inventory
-      </button> */}
     </div>
   )
 }

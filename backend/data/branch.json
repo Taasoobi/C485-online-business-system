@@ -100,11 +100,11 @@
     },
     {
         "id": 12,
-        "branch_street": "753 Aspen St",
-        "branch_city": "San Francisco",
-        "branch_zipcode": "94102",
+        "branch_street": "9193 Arpen Blvd",
+        "branch_city": "Sunnyvale",
+        "branch_zipcode": "96011",
         "branch_state": "CA",
-        "revenue": 3000000,
-        "number_of_employees": 150
+        "revenue": "1780000",
+        "number_of_employees": "93"
     }
 ]
