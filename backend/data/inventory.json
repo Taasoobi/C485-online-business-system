@@ -5,5 +5,12 @@
         "product_name": "Laptop",
         "quantity": 10,
         "price": 1000
+    },
+    {
+        "id": 2,
+        "branch_id": "2",
+        "product_name": "64GB DDR5 RAM",
+        "quantity": "23",
+        "price": "899.99"
     }
 ]

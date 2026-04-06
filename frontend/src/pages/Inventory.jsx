@@ -31,6 +31,44 @@ function Inventory() {
     navigate("/")
   }
 
+  {/* Add Item Button */}
+  const [showModal, setShowModal] = useState(false)
+
+  const [newItem, setNewItem] = useState({
+    id: "",
+    product_name: "",
+    price: "",
+    quantity: ""
+  })
+
+  const handleChange = (e) => {
+    setNewItem({ ...newItem, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      await api.post("/inventory", {
+        id: newItem.id,
+        branch_id: newItem.branch_id,
+        product_name: newItem.product_name,
+        price: newItem.price,
+        quantity: newItem.quantity
+      })
+
+      setShowModal(false)
+
+      // reload page to show new item
+      window.location.reload()
+
+    } catch (error) {
+      console.error("Error adding item:", error)
+      alert("Failed to add item")
+    }
+  }
+
+
   return (
     <div className="">
       <div className=" text-blue-500 font-bold flex items-center justify-between bg-gray-800 p-6">
@@ -46,7 +84,7 @@ function Inventory() {
 
       <div className="text-2xl font-bold mb-4 flex items-center gap-2 justify-evenly">
         <p>Inventory</p>
-        <button className="bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 font-bold py-2 px-4 rounded">
+        <button onClick={() => setShowModal(true)} className="bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 font-bold py-2 px-4 rounded">
           Add Item
         </button>
       </div>
@@ -60,6 +98,97 @@ function Inventory() {
         <h6 className="text-lg font-semibold mb-1">In Stock: {item.quantity}</h6>
         </div>
       ))}
+
+      {showModal && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+
+    <div className="bg-gray-800 p-6 rounded-xl w-full max-w-md">
+
+      <h2 className="text-xl font-bold mb-4 text-center">
+        Add Inventory Item
+      </h2>
+
+      <form onSubmit={handleSubmit}>
+
+        {/* SKU */}
+        <input
+          type="number"
+          name="id"
+          placeholder="SKU (ID)"
+          value={newItem.id}
+          onChange={handleChange}
+          className="w-full mb-3 p-2 border rounded"
+          required
+        />
+
+        <input
+          type="number"
+          name="branch_id"
+          placeholder="Branch ID"
+          value={newItem.branch_id}
+          onChange={handleChange}
+          className="w-full mb-3 p-2 border rounded"
+          required
+        />
+
+        {/* Product Name */}
+        <input
+          type="text"
+          name="product_name"
+          placeholder="Product Name"
+          value={newItem.product_name}
+          onChange={handleChange}
+          className="w-full mb-3 p-2 border rounded"
+          required
+        />
+
+        {/* Price */}
+        <input
+          type="number"
+          step="0.01"
+          name="price"
+          placeholder="Price"
+          value={newItem.price}
+          onChange={handleChange}
+          className="w-full mb-3 p-2 border rounded"
+          required
+        />
+
+        {/* Quantity */}
+        <input
+          type="number"
+          name="quantity"
+          placeholder="In Stock"
+          value={newItem.quantity}
+          onChange={handleChange}
+          className="w-full mb-4 p-2 border rounded"
+          required
+        />
+
+        {/* Buttons */}
+        <div className="flex justify-between">
+
+          <button
+            type="button"
+            onClick={() => setShowModal(false)}
+            className="px-4 py-2 bg-gray-400 text-white rounded"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            className="px-4 py-2 bg-green-600 text-white rounded"
+          >
+            Add Item
+          </button>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+)}
 
     </div>
   )
