@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react"
 import { api } from "../services/api"
+import { useNavigate } from "react-router-dom"
+import branch from "../assets/hub.png"
+import employeephoto from "../assets/employee.png"
+import inventory from "../assets/inventory-management.png"
+import logout from "../assets/logout.png"
 
 function Employees() {
-
+  const navigate = useNavigate();
   const [employee, setEmployee] = useState([])
 
   useEffect(() => {
@@ -11,17 +16,36 @@ function Employees() {
     })
   }, [])
 
+    const goToBranches = () => {
+      navigate("/branches")
+    }
+    const goToInventory = () => {
+      navigate("/inventory")
+    }
+    const goToDashboard = () => {
+      navigate("/dashboard")
+    }
+    const goToEmployees = () => {
+      navigate("/employees")
+    }
+    const goMain = () => {
+      navigate("/")
+    }
+    const handleLogout = () => {
+      navigate("/")
+    }
+
   return (
     <div className="">
     <div className=" text-blue-500 font-bold flex items-center justify-between bg-gray-800 p-6">
-        <button className="bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 py-2 px-4 rounded hover:cursor-pointer">Dashboard</button>
-        <h3 className="text-6xl text-blue-500 font-bold">Businexus</h3>
-        <button className="bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 py-2 px-4 rounded hover:cursor-pointer">Logout</button>
+        <button onClick={goToDashboard} className="bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 py-2 px-4 rounded hover:cursor-pointer">Dashboard</button>
+        <h3 onClick={goMain} className="text-6xl text-blue-500 font-bold">Businexus</h3>
+        <button onClick={handleLogout} className="bg-gray-300 hover:bg-blue-700 flex hover:text-white text-gray-800 py-2 px-4 rounded hover:cursor-pointer">Logout <img src={logout} alt="Logout" className="w-6 h-6 ml-2" /></button>
       </div>
       <div className="text-2xl font-bold mb-4 flex items-center justify-evenly bg-gray-700 border-b-2 border-black shadow-lg">
-        <div className="bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 font-bold w-1/3 h-14 flex items-center justify-center hover:cursor-pointer">Branches</div>
-        <div className="bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 font-bold w-1/3 h-14 flex items-center justify-center hover:cursor-pointer">Inventory</div>
-        <div className="bg-blue-500 text-white font-bold hover:cursor-pointer w-1/3 h-14 flex items-center justify-center">Employees</div>
+        <div onClick={goToBranches} className="bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 font-bold w-1/3 h-14 flex items-center justify-center hover:cursor-pointer"><img src={branch} alt="Branches" className="w-6 h-6 mr-2" />Branches</div>
+        <div onClick={goToInventory} className="bg-gray-300 hover:bg-blue-700 hover:text-white text-gray-800 font-bold w-1/3 h-14 flex items-center justify-center hover:cursor-pointer"><img src={inventory} alt="Inventory" className="w-6 h-6 mr-2" />Inventory</div>
+        <div onClick={goToEmployees} className="bg-blue-500 text-white font-bold hover:cursor-pointer w-1/3 h-14 flex items-center justify-center"><img src={employeephoto} alt="Employees" className="w-6 h-6 mr-2" />Employees</div>
       </div>
 
       <div className="text-2xl font-bold mb-4 flex items-center gap-2 justify-evenly">

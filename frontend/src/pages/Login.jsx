@@ -32,10 +32,6 @@ function Login() {
 
     if (user) {
       console.log("Login successful:", user)
-
-      // Optional: store user in localStorage
-      //localStorage.setItem("user", JSON.stringify(user))
-
       navigate("/dashboard")
     } else {
       alert(
@@ -48,10 +44,6 @@ function Login() {
     alert("Something went wrong. Please try again.")
   }
 
-    /* For now just simulate login
-    console.log("Logging in:", form)
-    // Later you will call your Flask API here
-    navigate("/dashboard");*/
   }
 
     //Sign up Section
